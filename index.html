@@ -2,117 +2,449 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="style.css">
-    <title>Abubakar Abdulhameed
-    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abubakar Abdulhameed - 2D/3D Animator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #2d1a0f 0%, #3d1a0a 100%);
+            color: white;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(45, 26, 15, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff7722;
+            text-decoration: none;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #ff7722;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff7722, #cc4400);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #d1d5db;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff7722, #cc4400);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+        }
+        
+        /* Skills Section */
+        .skills {
+            padding: 100px 0;
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #ff7722;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-card {
+            background: rgba(255, 119, 34, 0.1);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 119, 34, 0.3);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .skill-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #ff7722;
+        }
+        
+        .skill-description {
+            color: #d1d5db;
+        }
+        
+        /* Portfolio Section */
+        .portfolio {
+            padding: 100px 0;
+        }
+        
+        .youtube-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .youtube-item {
+            background: rgba(255, 119, 34, 0.1);
+            border: 1px solid rgba(255, 119, 34, 0.3);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .youtube-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .youtube-iframe {
+            width: 100%;
+            height: 200px;
+            border: none;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+        
+        .video-title {
+            color: #ff7722;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .video-description {
+            color: #d1d5db;
+            font-size: 0.9rem;
+        }
+        
+        .loading-message {
+            text-align: center;
+            color: #ff7722;
+            font-size: 1.2rem;
+            padding: 2rem;
+        }
+        
+        .error-message {
+            text-align: center;
+            color: #cc4400;
+            font-size: 1.1rem;
+            padding: 2rem;
+        }
+        
+        /* Footer */
+        .footer {
+            padding: 50px 0;
+            background: rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-link {
+            color: #ff7722;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: #cc4400;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .skills-grid,
+            .youtube-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Simple animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
-<body style="margin:0;">
-    <div id="bodoi">
-    </div>
-    <div style="width:100%; z-index: 2; position:absolute; top:0%;">
-    <div style="display:flex; place-content:center;">
-        <div id="topper">
-        <a style="padding-top:10vh; letter-spacing: 2px; font-size:300%; color:#7851A9; text-align: center; font-family:Monospace; font-weight: bold;">Hi there!</a>
-        <a style="font-weight: bold; font-size: 200%; color:white;">. _____________________________________ .</a>
-        <a style="letter-spacing: 2px; font-size:500%; color:white; text-align: center; font-family: 'Gill Sans MT'; font-weight: bold;">I'm Abubakar Abdulhameed</a>
-        <a style="letter-spacing: 2px; font-size:150%; color:rgb(255, 255, 255); text-align: center; font-family:Monospace;">Cartoonist | Video Graphics | 3D Animator | VFX Artist | Explainer Videos</a>
-        <div style="margin-top: 20vh;">
-            <a href="mailto:casualdude360@gmail.com?subject=Animator%20Needed&body=Hi%20Abubakar"><img src="envelope.svg" style="margin-right: 30px;"></a>
-            <a href="https://wa.me/08125512804?text=Hello%20Abubakar.%20I%20need%20an%20Animator"><img src="whatsapp.svg"></a>
-        </div>
-    </div>
-    </div>
-
-    <div id="intro">
-        <a style="font-family: monospace; color: #9966cc;"><h1>Introduction</h1></a> <p><a style="font-family: monospace; color:white;"> I'm Abubakar. An animator with 2 plus years of animation experience. I've created multiple animations and VFX projects both for clients and for personal use. It's a great process and is more like a hobby to me. Below are some of my projects.</a>
-    </div>
-
-    <div style="display:grid; place-items: center; background-color: #191919;">
-        
-        <a style="color:#d8bfd8; font-family: monospace; text-align: center;"><h1>Blender, 3D animation and VFX Editing</h1></a>
-        <br>
-    
-        <div style="width:90%;">
-        <div id="holder">
-        <video class="play" id="elevator" controls>
-            <source src="elevator.mp4" type="video/mp4">
-            Your browser does not support the video
-        </video>
-        </div><div style="font-family: monospace; font-weight: bold; padding-left:5%; color:white; padding-right:5%;">A VFX video of me entering an elevator with a robot. The whole scene is CGI. I'm the only real character.</div>
-        </div>
-
-        <div id="horiz">
-        
-            <div id="control" >
-            <div id="sholder">
-            <video class="play" id="elevator" controls>
-                <source src="car.mp4" type="video/mp4">
-                Your browser does not support the video
-            </video>
-            </div><div style="font-family: monospace; font-weight: bold; padding-left:5%; color:white; padding-right:5%;">A Photorealistic car animations in a regular park, partly running.</div>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="logo">Abubakar Abdulhameed</a>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#skills" class="nav-link">Skills</a></li>
+                    <li><a href="#portfolio" class="nav-link">Portfolio</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
             </div>
-
-        <div id="control" >
-        <div id="sholder">
-            <video class="play" id="elevator" controls>
-                <source src="space.mp4" type="video/mp4">
-                Your browser does not support the video
-            </video>
-            </div><div style="font-family: monospace; font-weight: bold; padding-left:5%; color:white; padding-right:5%;">An animation of a space shuttle starting engine and thrusting into space.</div>
         </div>
-        </div>
+    </nav>
 
-        <div style="width:90%;">
-            <div id="holder">
-                <video class="play" id="elevator" controls>
-                    <source src="whatch.mp4" type="video/mp4">
-                    Your browser does not support the video
-                </video>
-            </div><div style="font-family: monospace; font-weight: bold; padding-left:5%; color:white; padding-right:5%;">A timelapse of the making of the photorealistic car video. made furely on blender.</div>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Abubakar Abdulhameed</h1>
+                <p>2D & 3D Animator | Bringing Stories to Life Through Animation</p>
+                <a href="#portfolio" class="cta-button">View My Work</a>
             </div>
+        </div>
+    </section>
 
-            <div id="horiz">
-        
-                <div id="control" >
-                <div id="sholder">
-                <video class="play" id="elevator" controls>
-                    <source src="anim.mp4" type="video/mp4">
-                    Your browser does not support the video
-                </video>
-                </div><div style="font-family: monospace; font-weight: bold; padding-left:5%; color:white; padding-right:5%;">A minecraft animation of steve and his irritable dog. stuck in a void and contemplating.</div>
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card reveal">
+                    <div class="skill-icon">🎭</div>
+                    <h3 class="skill-title">2D Character Animation</h3>
+                    <p class="skill-description">Creating expressive character animations with fluid movement and personality.</p>
                 </div>
-    
-            <div id="control" >
-            <div id="sholder">
-                <video class="play" id="elevator" controls>
-                    <source src="adver.mp4" type="video/mp4">
-                    Your browser does not support the video
-                </video>
-                </div><div style="font-family: monospace; font-weight: bold; padding-left:5%; color:white; padding-right:5%;">A simple motion graphics animation for an advert. made with simple shapes and spongy animation.</div>
+                <div class="skill-card reveal">
+                    <div class="skill-icon">🎪</div>
+                    <h3 class="skill-title">3D Modeling & Animation</h3>
+                    <p class="skill-description">Crafting detailed 3D models and bringing them to life with realistic animations.</p>
+                </div>
+                <div class="skill-card reveal">
+                    <div class="skill-icon">✨</div>
+                    <h3 class="skill-title">Motion Graphics</h3>
+                    <p class="skill-description">Eye-catching motion graphics for brands and digital marketing campaigns.</p>
+                </div>
+                <div class="skill-card reveal">
+                    <div class="skill-icon">🎬</div>
+                    <h3 class="skill-title">Visual Effects</h3>
+                    <p class="skill-description">Adding magical visual effects to enhance storytelling and create immersive experiences.</p>
+                </div>
             </div>
+        </div>
+    </section>
 
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Featured Work</h2>
+            <div id="loading" class="loading-message">
+                Loading animations...
             </div>
-
-
+            <div id="error" class="error-message" style="display: none;">
+                Unable to load videos. Please try again later.
+            </div>
+            <div id="youtube-videos" class="youtube-grid"></div>
         </div>
+    </section>
 
-        <div style=" background-color: #2a2a2a; padding-bottom:10px; padding-top: 20px; display:flex; place-content: center;">
-
-            <img id="older" style="margin:10px;" width="40%" src="blend.jpg">
-            <img id="older" width="40%" src="moho.jpg">
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-links">
+                <a href="mailto:casualdude180@gmail.com?subject=Animation%20Project%20Inquiry" class="footer-link">Email</a>
+                <a href="https://www.linkedin.com/in/abubakardev?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="footer-link">LinkedIn</a>
+                <a href="https://discord.gg/AGsG5kPd" class="footer-link">Discord</a>
+                <a href="https://youtube.com/@scruffybros?si=MzCnEuGaJZbzpvel" class="footer-link">YouTube</a>
+            </div>
+            <p>&copy; 2024 Abubakar Abdulhameed. All rights reserved.</p>
         </div>
-        <div style="padding:6%; background-color: #2a2a2a; color:white; font-family: monospace;">
-        <a>I've used multiple softwares for creating animations including blender, moho, krita, live2D, toon boom harmony and a few more. I'm not an expert at anyn of these but as always ready to learn more to better my skills.</a>
-        </div>
+    </footer>
 
-    
-        <div style="color:white; text-decoration:none; padding:20px; text-align: center; display:flex; justify-content:center; background-color: rgb(31, 31, 31);">
-        <p style="font-size:20px;">&copy; Copyright 2025. All rights reserved
-        <br><br><a style="color:white; text-decoration:none; " href="mailto:casualdude360@gmail.com?subject=Animator%20Needed&body=Hi%20Abubakar">casualdude360@gmail.com</a>
-        <br><br><a style="color:white; text-decoration:none;" href="https://wa.me/08125512804?text=Hello%20Abubakar.%20I%20need%20an%20Animator">Whatsapp 08125512804</a></p>
-    </div>
-</div>
-</div>
+    <script>
+        // Replace with your published Google Sheets CSV link
+        const sheetUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTyd5Qa8oOx9jmNGidQ2hx32UVa2v4KyWZ_ddUjDX4sf9i5QHS06VnwqlBCHh28yjYk5phwSOq2Ff8f/pub?output=csv";
+        
+        async function loadYouTubeVideos() {
+            const loadingElement = document.getElementById('loading');
+            const errorElement = document.getElementById('error');
+            const videosContainer = document.getElementById('youtube-videos');
+            
+            try {
+                const response = await fetch(sheetUrl);
+                const data = await response.text();
+                
+                const rows = data.split('\n')
+                    .map(row => row.trim())
+                    .filter(row => row && (row.includes('youtube') || row.includes('youtu.be')));
+                
+                loadingElement.style.display = 'none';
+                
+                if (rows.length === 0) {
+                    errorElement.textContent = 'No YouTube videos found in the sheet.';
+                    errorElement.style.display = 'block';
+                    return;
+                }
+                
+                rows.forEach((row, index) => {
+                    const columns = row.split(',').map(col => col.replace(/"/g, '').trim());
+                    const url = columns[0];
+                    const title = columns[1] || `Animation ${index + 1}`;
+                    const description = columns[2] || 'Featured animation work';
+                    
+                    const match = url.match(/(?:v=|youtu\.be\/|embed\/)([a-zA-Z0-9_-]{11})/);
+                    if (match) {
+                        const videoId = match[1];
+                        
+                        const videoItem = document.createElement('div');
+                        videoItem.className = 'youtube-item reveal';
+                        
+                        const iframe = document.createElement('iframe');
+                        iframe.className = 'youtube-iframe';
+                        iframe.src = `https://www.youtube.com/embed/${videoId}`;
+                        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                        iframe.allowFullscreen = true;
+                        
+                        const videoInfo = document.createElement('div');
+                        const videoTitle = document.createElement('div');
+                        videoTitle.className = 'video-title';
+                        videoTitle.textContent = title;
+                        
+                        const videoDesc = document.createElement('div');
+                        videoDesc.className = 'video-description';
+                        videoDesc.textContent = description;
+                        
+                        videoInfo.appendChild(videoTitle);
+                        videoInfo.appendChild(videoDesc);
+                        videoItem.appendChild(iframe);
+                        videoItem.appendChild(videoInfo);
+                        videosContainer.appendChild(videoItem);
+                    }
+                });
+                
+                setTimeout(revealOnScroll, 100);
+                
+            } catch (error) {
+                console.error('Error loading videos:', error);
+                loadingElement.style.display = 'none';
+                errorElement.style.display = 'block';
+            }
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll reveal animation
+        const revealOnScroll = () => {
+            const revealElements = document.querySelectorAll('.reveal');
+            revealElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+        
+        // Load videos when page loads
+        window.addEventListener('DOMContentLoaded', loadYouTubeVideos);
+    </script>
 </body>
-</html>
+                            </html>
